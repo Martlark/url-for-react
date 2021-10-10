@@ -1,8 +1,9 @@
-import React, {useEffect} from "react";
-import {BrowserRouter as Router, Link, Route, Switch, useLocation} from "react-router-dom";
-import About, {routeAbout} from "./About";
+import React from "react";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {routeAbout} from "./About";
 import Home from "./Home";
-import Number, {routeNumber} from "./Number";
+import {routeNumber} from "./Number";
+import Word from "./Word";
 
 export default function App() {
     return <Router>
@@ -20,12 +21,17 @@ export default function App() {
                 <li>
                     <Link to="/number/4567">Number 4567</Link>
                 </li>
+                <li>
+                    <Link to="/word/hello">Word hello</Link>
+                </li>
             </ul>
 
             <hr/>
 
             <Switch>
                 <Route exact path="/" component={Home}>
+                </Route>
+                <Route exact path="/word/:word" component={Word}>
                 </Route>
                 {routeAbout.Route()}
                 {routeNumber.Route()}

@@ -1,6 +1,6 @@
 {
   "name": "url-for-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "factory class to centralize router handling for page components",
   "main": "dist/url-for-react.js",
   "module": "dist/url-for-react.js",
