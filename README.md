@@ -10,6 +10,10 @@ The main idea is to have an exported factory Class that builds routes, links
 and parameter handling.  This factory class is kept with the component, allowing
 easier handling of routing, parameter and component changes.
 
+Importing the factory class into a component allows that component to route to or link
+using it.  The component used by `UrlFor` does not need to be exported.  This greatly 
+simplifies handling routed components.  Providing further decoupling.
+
 ## Installation
 
 ```shell
@@ -20,6 +24,8 @@ npm install url-for-react
 
 Before
 ------
+
+#### Routed component
 
 ```JavaScript
     export default function Word(props) {
@@ -32,6 +38,8 @@ Before
         return <h1>Word {word}</h1>
     }
 ``` 
+
+#### Navigation and switching.
 
 ```html
     <ul>
@@ -47,6 +55,7 @@ Before
 
 After
 -----
+#### Routed component
 
 ```JavaScript
     export const routeWord = new UrlFor("/word/:word", Word, "Words", "Pick the word");
@@ -61,6 +70,7 @@ After
         return <h1>Word {word}</h1>
     }
 ``` 
+#### Navigation and switching.
 
 ```html
     <ul>
@@ -104,6 +114,8 @@ Returns a `react-router-dom` Link component.
 | text | text of the link |
 | title | the `title=` attribute |
 
+NOTE: only one parameter or none is allowed.
+
 #### Route
 
 ```javascript
@@ -121,3 +133,5 @@ matchId(props)
 ```
 
 Returns the parameter passed into the route.  `props` can be `props` or `match` or `params`.
+
+NOTE: only one parameter is supported.  
