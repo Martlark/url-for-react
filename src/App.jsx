@@ -8,24 +8,25 @@ import Word from "./Word";
 export default function App() {
     return <Router>
         <div>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    {routeAbout.LinkTo()}
-                </li>
-                <li>
-                    {routeNumber.LinkTo(66, 'Number 66')}
-                </li>
-                <li>
-                    <Link to="/number/4567">Number 4567</Link>
-                </li>
-                <li>
-                    <Link to="/word/hello">Word hello</Link>
-                </li>
-            </ul>
-
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        {routeAbout.LinkTo()}
+                    </li>
+                    <li>
+                        {routeNumber.LinkTo(66, 'Number 66')}
+                    </li>
+                    <li>
+                        <Link to="/number/4567">Number 4567</Link>
+                    </li>
+                    <li>
+                        <Link to="/word/hello">Word hello</Link>
+                    </li>
+                </ul>
+            </nav>
             <hr/>
 
             <Switch>

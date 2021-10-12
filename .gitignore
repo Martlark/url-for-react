@@ -1,5 +1,5 @@
 /node_modules
 # Project exclude paths
 /dist/
-/public
+/build/
 .idea

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import { Link, Route } from "react-router-dom";
 
 /***
@@ -10,20 +10,28 @@ import { Link, Route } from "react-router-dom";
  * @param title - Title of any link
  */
 export default class UrlFor {
-  constructor(route, component, text = null, title = null) {
+  route:string;
+  text:string;
+  title:string;
+  component: React.FC;
+  reg: RegExp;
+  link_group:string;
+
+
+  constructor(route:string, component:React.FC, text?:string, title?:string) {
     this.route = route;
-    this.text = text;
-    this.title = title;
+    this.text = text ?? '';
+    this.title = title ?? '';
     this.component = component;
     this.reg = RegExp(/(:\w*)/);
     this.link_group = "";
     const link_groups = this.reg.exec(route);
-    if (link_groups) {
+    if (link_groups && link_groups.length > 0) {
       this.link_group = link_groups[0];
     }
   }
 
-  linkId() {
+  linkId():string {
     /**
      * return the identifier used in the route link
      * ie: for /name/:id returns 'id'
@@ -31,7 +39,7 @@ export default class UrlFor {
     return this.link_group.substring(1);
   }
 
-  url_for(request_id) {
+  url_for(request_id:any):string {
     /**
      * return an url using the request id to replace the linkId
      * ie: /name/:id -> url_for(45) == /name/45
@@ -39,7 +47,7 @@ export default class UrlFor {
     return this.route.replace(this.reg, request_id || "");
   }
 
-  Route() {
+  Route():ReactElement|null {
     /**
      * return a React component to specify an exact route using react-router-dom
      */
@@ -49,7 +57,7 @@ export default class UrlFor {
     return null;
   }
 
-  LinkTo(request_id = null, text = null, title = null) {
+  LinkTo(request_id:any = null, text?:string, title?:string):ReactElement {
     /**
      * return a React Link component using the request_id and title to build
      * a link
@@ -59,16 +67,16 @@ export default class UrlFor {
      * @param title - the assistance title of the link, "" for none
      *
      */
-    text = text ?? this.text;
-    title = title ?? this.title;
+    const textLink = text ?? this.text;
+    const titleLink = title ?? this.title;
     return (
-      <Link to={this.url_for(request_id)} title={title}>
-        {text}
+      <Link to={this.url_for(request_id)} title={titleLink}>
+        {textLink}
       </Link>
     );
   }
 
-  matchId(params) {
+  matchId(params:any):string {
     /**
      * return the matching id from a location props after the component has been routed to.
      * Example: useState(routeObject.matchId(props));
