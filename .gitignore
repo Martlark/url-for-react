@@ -3,3 +3,5 @@
 /dist/
 /public
 .idea
+/dist-esm
+/_bundles

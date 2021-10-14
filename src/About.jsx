@@ -1,5 +1,5 @@
 import React from "react";
-import UrlFor from "./lib/url-for-react";
+import UrlFor from "../dist/url-for-react";
 
 export const routeAbout = new UrlFor('/about', About, "About", "Show version information");
 

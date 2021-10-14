@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import UrlFor from "./lib/url-for-react";
+import UrlFor from "../dist/url-for-react";
 
 export const routeNumber = new UrlFor("/number/:num", Number, "Numbers", "Pick the number");
 
